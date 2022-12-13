@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# test apis
+test-apis/
+
+# ffmpeg
+ffmpeg-master-latest-win64-gpl-shared/
