@@ -128,6 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# test 
-test-youtube-dl/
-test-pytube/
+# test apis
+test-apis/
