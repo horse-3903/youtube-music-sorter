@@ -1,17 +1,19 @@
 import ytmusicapi
-from song_funcs import *
+import json
 
 ytmusic = ytmusicapi.YTMusic()
-url = "https://www.youtube.com/playlist?list=PLeG6U6mYSDogd8J0478lQ461r26bfYg70"
-path = r"C:/Users/chong/Desktop/Coding/youtube-music-sorter/test-songs/"
+url = "https://music.youtube.com/playlist?list=PLeG6U6mYSDogd8J0478lQ461r26bfYg70&si=1gYpgGXQRrvzSJCv"
+id = "PLeG6U6mYSDogd8J0478lQ461r26bfYg70"
 
-# info = get_song_info(video_id=get_video_id(url))
-playlist = ytmusic.get_playlist(get_id(url))["tracks"]
-start = int(input(f"Start index (0 - {len(playlist)-1}): "))
+playlist = ytmusic.get_playlist(id, limit=None)
+tracks = playlist["tracks"]
 
-for index, track in enumerate(playlist):
-    if index < start:
-        continue
-    song_info = get_song_info(res=track)
-    download_song(f"https://www.youtube.com/watch?v={song_info['video_id']}", path, title=song_info["title"])
-    set_info(path+song_info["title"]+".mp3", song_info)
+for i, t in enumerate(tracks):
+    title = t["title"]
+    artist = t["artists"][0]["name"]
+
+    videoID = ytmusic.search(title + " " + artist)
+    
+    video = ytmusic.get_song(videoID)
+
+    break
